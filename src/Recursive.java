@@ -7,20 +7,50 @@ import java.util.Scanner;
 
 public class Recursive {
 	/* attributes
-   * @author: David Smirnov
-	// default constructor
+	* @author: David Smirnov
+	*/
+	private static IllegalArgumentException NOT_ODD = new IllegalArgumentException("You may only enter odd");
+	private int[] binaryNumber;
 
-	/* custom constructor
-   * @author: David Smirnov
 	/**
-		* default Recursive method
-		* @author: David Smirnov
-		* receives the original binary number stored as our attribute,
-		* calls itself by passing the original attribute and sets index to 0 by default
-		*/
-	private String str = "4576576";
-	private int[] input = new int[str.length()];
-	private Scanner n = new Scanner(str);
+	 * @author: David Smirnov
+	 * default constructor
+	 */
+	public Recursive() {
+
+	}
+
+	/** custom constructor
+	  * @author: David Smirnov
+	  */
+	public Recursive(String input) {
+		Scanner scan = new Scanner(input);
+
+		{ // local scope
+			int i;
+			for (i = 0; scan.hasNextInt(); i++) {
+				scan.nextInt();
+			}
+
+			if (i % 2 == 0) {
+				throw NOT_ODD;
+			}
+
+			binaryNumber = new int[i];
+		}
+
+		scan = new Scanner(input);
+		for (int i = 0; scan.hasNextInt(); i++) {
+			binaryNumber[i] = scan.nextInt();
+		}
+	}
+
+	/**
+	 * overload for recursive method
+	 * @author: David Smirnov
+	 * receives the original binary number stored as our attribute,
+	 *  calls itself by passing the original attribute and sets index to 0 by default
+	 */
 	private static int[] onion(int[] input){
 		return onion(input, 0);
 	}
@@ -31,13 +61,11 @@ public class Recursive {
 	 * receives both int[] and int as index value
 	 */
 	private static int[] onion(int[] input, int index){
-		//public recursive(String input) {
-		if (str.length() % 2 == 0) {
-			throw new IllegalArgumentException("You may only enter odd");
-		} else {//converts string in to int array
-			for (int i = 0; n.hasNextInt() ; i++) {
-				input[i] = n.nextInt();
-			}
+		if (input.length % 2 == 0) {
+			throw NOT_ODD;
+		} else {
 			input[index] = input[index] == 0 ? 1 : 0;
 			input[input.length - 1 - index] = input[input.length - 1 - index] == 0 ? 1 : 0;
 		}
+	}
+}
