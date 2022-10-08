@@ -1,10 +1,10 @@
+import java.util.Scanner;
+
 /**
  * Recursive Class
  * @author Arjun Bott
  * @author David Smirnov
  */
-import java.util.Scanner;
-
 public class Recursive {
 	/** attributes
 	 * @author: David Smirnov
@@ -12,15 +12,7 @@ public class Recursive {
 	private static IllegalArgumentException NOT_ODD = new IllegalArgumentException("You may only enter odd");
 	private int[] binaryNumber;
 
-	/**
-	 * @author: David Smirnov
-	 * default constructor
-	 */
-	public Recursive() {
-
-	}
-
-	/** custom constructor
+	/** constructor
 	 * @author: David Smirnov
 	 */
 	public Recursive(String input) {
@@ -47,6 +39,9 @@ public class Recursive {
 		for (int i = 0; scan.hasNext(); i++) {
 			binaryNumber[i] = Integer.parseInt(scan.next());
 		}
+
+		// calls the recursive method
+		this.onion();
 	}
 
 	/** helper method
@@ -61,6 +56,14 @@ public class Recursive {
 		}
 
 		return output.trim();
+	}
+
+	/** getter method
+	 * @author: Arjun Bott
+	 * method used to receieve this class's attribute
+	 */
+	public int[] getBinaryNumber() {
+		return this.binaryNumber;
 	}
 
 	/**
@@ -81,12 +84,14 @@ public class Recursive {
 		if (binaryNumber.length % 2 == 0) { // check binaryNumber for odd or even value
 			throw NOT_ODD;
 		} else {
-			if (2 * index - 1 >= binaryNumber.length) { // base case
-				binaryNumber[(int) ((index + 1) / 2)] = binaryNumber[(int) ((index + 1) / 2)] == 0 ? 1 : 0;
+			int halfIndex = (int) ((index + 1) / 2);
+
+			if ((2 * index - 1 >= binaryNumber.length) || (binaryNumber.length == 1)) { // base case
+				binaryNumber[halfIndex] = binaryNumber[halfIndex] == 0 ? 1 : 0;
 				return binaryNumber;
 			} else { // recursive case
 				binaryNumber[index] = binaryNumber[index] == 0 ? 1 : 0;
-				binaryNumber[binaryNumber.length - 1 - index] = binaryNumber[binaryNumber.length - 1 - index] == 0 ? 1 : 0;
+				binaryNumber[binaryNumber.length - index - 1] = binaryNumber[binaryNumber.length - index - 1] == 0 ? 1 : 0;
 				return onion(index + 1);
 			}
 		}

@@ -16,20 +16,20 @@ public class Tester {
 		System.out.println();
 
 		// Arjun
-			System.out.println("numTrials: " + numTrials);
-		// for (int i = 0; i < numTrials; i++) {
+		System.out.println("numTrials: " + numTrials);
+
+		for (int i = 0; i < numTrials; i++) {
 			System.out.println("Enter a binary number: ");
-			// System.out.println();
-			Recursive re = new Recursive(scan.nextLine());
-			int[] binaryNumber = re.onion();
-			// System.out.println();
+			Recursive onion = new Recursive(scan.nextLine());
+			int[] binaryNumber = onion.getBinaryNumber();
+
 			System.out.println("binaryNumber length: " + binaryNumber.length);
+
 			for (int j = 0; j < binaryNumber.length; j++) {
 				System.out.print(binaryNumber[j]);
 			}
+
 			System.out.println();
-
-
-		// }
+		}
 	}
 }
