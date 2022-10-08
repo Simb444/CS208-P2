@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -96,4 +97,19 @@ public class Recursive {
 			}
 		}
 	}
+	// @author: David Smirnov
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Recursive recursive = (Recursive) o;
+		return Arrays.equals(binaryNumber, recursive.binaryNumber);
+	}
+	// @author: Arjun Bott
+	@Override
+	public String toString() {
+		return "Recursive{" +
+				"binaryNumber=" + Arrays.toString(binaryNumber);
+	}
+
 }
