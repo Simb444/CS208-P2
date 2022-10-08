@@ -10,7 +10,7 @@ public class Recursive {
 	/** attributes
 	 * @author: David Smirnov
 	 */
-	private static IllegalArgumentException NOT_ODD = new IllegalArgumentException("You may only enter odd");
+	private static IllegalArgumentException NOT_ODD = new IllegalArgumentException(":ERROR: You may only enter an odd number of bits");
 	private int[] binaryNumber;
 
 	/** constructor
